@@ -1,0 +1,12 @@
+# Template de pastas - é um padrão comum e aceito pela comunidade go:
+  `github.com/golang-standards/project-layout`
+
+- internal - parte do código que não estará disponível em repositórios. Não ficará publica.
+- pgk - Parte pública do código.. é o contrário da `internal`
+- cmd - é aqui que será gerado o executavel.. é aqui que fica o main.go
+- configs - aqui fica a idicação de como o projeto vai iniciar, o padão de variável de ambiente e muitas outras configuraçoes e coisas que ajudam as configurações.
+- test - aqui ficarão alguns arquivos de teste que são adicionais.. que ajudarão os outros testes.. Ex. Documentação de testes, exemplos, stubs, arquivos http pra fazer E2E, declarações de Postman pra conseguir rodar..
+
+- para testar o endpoint eu foi no terminal.. e:
+  - 'sqlite3 test.db'   =>'test.db' é o arquivo que eu disse que seria o meu banco de dados
+  - 'select * from products;'  => vai mostrar os produtos criados

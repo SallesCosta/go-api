@@ -1,0 +1,31 @@
+POST http://localhost:8000/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "name":"edu",
+  "price": 33 
+}
+
+###
+
+GET http://localhost:8000/products/c90c9257-9b24-46fc-9d87-dc05e45e3c63 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMwOTk1OTUsInN1YiI6IjgxMzk3ZGU1LWU4ZmEtNDk3Yy1hZGQ4LTIyN2I5ODljOTFjYyJ9.E1xv_2kVx3JGWulw5bAJ0N7X8FjKctJ27uMi37zKcDs
+###
+
+PUT http://localhost:8000/products/c90c9257-9b24-46fc-9d87-dc05e45e3c63 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMwOTkxMzcsInN1YiI6IjgxMzk3ZGU1LWU4ZmEtNDk3Yy1hZGQ4LTIyN2I5ODljOTFjYyJ9.ZQ-imn0zthH3RLzHW1rnIJrHE1OsWcNgCCS3oOG2gT4
+
+{
+  "name":"Outro Produto - Alterado ",
+  "price":3344 
+}
+
+###
+
+DELETE http://localhost:8000/products/e3abacc0-4edd-43c7-a633-5033fe17a009 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzI5MTEwOTIsInN1YiI6IjgxMzk3ZGU1LWU4ZmEtNDk3Yy1hZGQ4LTIyN2I5ODljOTFjYyJ9.lPbryizEvpq5AxxHo98lxENK2CCrENNH73mY4XMBA6M
+###
+
+GET http://localhost:8000/products?page=1&limit=3 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMxOTI0MTMsInN1YiI6IjgxMzk3ZGU1LWU4ZmEtNDk3Yy1hZGQ4LTIyN2I5ODljOTFjYyJ9.pfZgxObNB_z7v9nGHHIv9YtCNMqPbYqSVHWuZUZuf8o
