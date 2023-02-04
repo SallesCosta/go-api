@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/jwtauth"
 	"github.com/sallescosta/goexpert/api/internal/dto"
 	"github.com/sallescosta/goexpert/api/internal/entity"
@@ -133,4 +134,30 @@ func (h *UserHandler) GetAllUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(users)
+}
+
+func (h *UserHandler) DeleteUser(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+
+	if id == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	_, err := h.UserDB.FindUserByID(id)
+	if err != nil {
+		w.WriteHeader(http.StatusNotFound)
+		// w.WriteHeader("Usuário não encontrado.")
+		return
+	}
+
+	err = h.UserDB.DeleteUserByID(id)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		// w.WriteHeader("Usuário deletado")
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(http.StatusOK)
+
 }

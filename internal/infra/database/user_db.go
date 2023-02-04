@@ -38,3 +38,19 @@ func (u *User) FindAllUsers(page, limit int, sort string) ([]entity.User, error)
 	}
 	return users, err
 }
+
+func (u *User) FindUserByID(id string) (*entity.User, error) {
+	var user entity.User
+	if err := u.DB.Where("id = ?", id).First(&user).Error; err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+func (u *User) DeleteUserByID(id string) error {
+	user, err := u.FindUserByID(id)
+	if err != nil {
+		return err
+	}
+	return u.DB.Delete(user).Error
+}

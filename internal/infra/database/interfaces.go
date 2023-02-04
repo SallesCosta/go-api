@@ -5,7 +5,9 @@ import "github.com/sallescosta/goexpert/api/internal/entity"
 type UserInterface interface {
 	Create(user *entity.User) error
 	FindByEmail(email string) (*entity.User, error)
+	FindUserByID(id string) (*entity.User, error)
 	FindAllUsers(page, limit int, sort string) ([]entity.User, error)
+	DeleteUserByID(id string) error
 }
 
 type ProductInterface interface {
