@@ -55,6 +55,9 @@ func main() {
 	r.Use(middleware.WithValue("jwt", config.TokenAuth))
 	r.Use(middleware.WithValue("JwtExpiresIn", config.JwtExpiresIn))
 
+	r.Post("/users", userHandler.Create)
+	r.Post("/users/generate_token", userHandler.GetJWT)
+
 	r.Route("/products", func(r chi.Router) {
 		r.Use(jwtauth.Verifier(config.TokenAuth)) // o token pode estar na URL... ou no header.. é um midleware.. este injeta o token no nosso contexto
 		r.Use(jwtauth.Authenticator)              // esse é outro midleware que valida o tokent
@@ -66,17 +69,12 @@ func main() {
 		r.Delete("/{id}", productHandler.DeleteProduct)
 	})
 
-	r.Post("/users", userHandler.Create)
-	r.Post("/users/generate_token", userHandler.GetJWT)
-
 	r.Route("/users", func(r chi.Router) {
 		r.Use(jwtauth.Verifier(config.TokenAuth))
 		r.Use(jwtauth.Authenticator)
-
 		r.Get("/", userHandler.GetAllUsers)
 		r.Delete("/{id}", userHandler.DeleteUser)
 	})
-
 	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8000/docs/doc.json")))
 
 	http.ListenAndServe(":8000", r)
