@@ -147,17 +147,14 @@ func (h *UserHandler) DeleteUser(w http.ResponseWriter, r *http.Request) {
 	_, err := h.UserDB.FindUserByID(id)
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
-		// w.WriteHeader("Usuário não encontrado.")
 		return
 	}
 
 	err = h.UserDB.DeleteUserByID(id)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		// w.WriteHeader("Usuário deletado")
 		return
 	}
 	w.WriteHeader(http.StatusOK)
 	w.WriteHeader(http.StatusOK)
-
 }
